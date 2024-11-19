@@ -1,4 +1,5 @@
 from django.views.generic.detail import DetailView
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.forms import UserCreationForm
@@ -6,15 +7,18 @@ from .models import Book
 from .models import Library
 # Create your views here.
 
+
 def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect ('login')
+            user = form.save()  # Save the user to the database
+            login(request, user)  # Log in the user after registration
+            return redirect('list_books')  # Redirect to a post-login page
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
+
 
 def is_admin(user):
     return user.is_authenticated and user.profile.role == 'Admin'
