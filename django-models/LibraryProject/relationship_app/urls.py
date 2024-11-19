@@ -6,6 +6,8 @@ from django.contrib.auth.views import LogoutView, LoginView
 from .views import register_view
 from . import views
 
+# views.register
+
 
 urlpatterns = [
     path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
