@@ -29,5 +29,19 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.title} by {self.author}"
+    
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view articles"),
+            ("can_edit", "can_edit_articles"),
+            ("can_delete", "can delete articles"),
+            
+        ]
 
 # Create your models here.
