@@ -3,6 +3,20 @@ from .models import Article
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect
 from .forms import CustomUserForm
+from .forms import ExampleForm
+
+def example_form_view(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            # Process the form data
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            return render(request, 'bookshelf/form_success.html', {'name': name})
+    else:
+        form = ExampleForm()  # Render an empty form for GET requests
+    return render(request, 'bookshelf/example_form.html', {'form': form})
 
 def custom_user_form_view(request):
     if request.method == 'POST':

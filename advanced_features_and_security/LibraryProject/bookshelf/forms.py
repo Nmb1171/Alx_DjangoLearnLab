@@ -1,6 +1,16 @@
 from django import forms
 from bookshelf.models import CustomUser
 
+
+class ExampleForm(forms.Form):
+    name = forms.CharField(max_length=100, label='Your Name')
+    email = forms.EmailField(label='Your Email Address')
+    message = forms.CharField(
+        widget=forms.Textarea,
+        max_length=500,
+        label='Your Message'
+    )
+
 class CustomUserForm(forms.ModelForm):
 
     class Meta:
@@ -23,4 +33,3 @@ class CustomUserForm(forms.ModelForm):
         }
 
 
-        
