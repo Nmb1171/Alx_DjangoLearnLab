@@ -21,3 +21,6 @@ class CustomUserForm(forms.ModelForm):
         help_texts = {
             'username': 'Enter a unique username.',
         }
+
+
+        # ExampleForm
