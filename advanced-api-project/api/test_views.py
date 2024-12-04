@@ -89,6 +89,7 @@ class BookDeleteViewTest(APITestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = User.objects.create_user(username="testuser", password="testpass")
+        self.client.login()
         self.client.force_authenticate(user=self.user)  # Authenticate user
         self.author = Author.objects.create(name="J.K. Rowling")
         self.book = Book.objects.create(title="Harry Potter", publication_year=1997, author=self.author)
