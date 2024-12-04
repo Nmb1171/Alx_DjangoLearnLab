@@ -1,15 +1,17 @@
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .models import Book
 from .serializers import BookSerializer
 
 class BookListView(generics.ListAPIView):
     """
-    View to list all books in the database.
+    View to list all books.
     Accessible to all users.
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]  # Read-only access for unauthenticated users
+
 
 class BookDetailView(generics.RetrieveAPIView):
     """
@@ -18,30 +20,34 @@ class BookDetailView(generics.RetrieveAPIView):
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]  # Read-only access for unauthenticated users
+
 
 class BookCreateView(generics.CreateAPIView):
     """
     View to create a new book.
-    Accessible to authenticated users only.
+    Only accessible to authenticated users.
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]  # Custom permission added
+    permission_classes = [IsAuthenticated]  # Requires authentication for creating books
+
 
 class BookUpdateView(generics.UpdateAPIView):
     """
     View to update an existing book.
-    Accessible to authenticated users only.
+    Only accessible to authenticated users.
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]  # Requires authentication for updating books
+
 
 class BookDeleteView(generics.DestroyAPIView):
     """
     View to delete a book.
-    Accessible to authenticated users only.
+    Only accessible to authenticated users.
     """
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]  # Requires authentication for deleting books
