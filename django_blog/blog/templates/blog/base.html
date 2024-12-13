@@ -13,6 +13,12 @@
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
             </ul>
+
+            <form method="get" action="{% url 'search' %}">
+                <input type="text" name="q" placeholder="Search posts...">
+                <button type="submit">Search</button>
+            </form>
+            
         </nav>
     </header>
 

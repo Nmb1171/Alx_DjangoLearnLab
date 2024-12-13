@@ -1,5 +1,21 @@
 from django import forms
-from .models import Comment
+from .models import Post, Comment
+from taggit.forms import TagWidget
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'tags']  # Include fields from Post model
+        widgets = {
+            'tags': TagWidget(),  # Use TagWidget to allow easy tag input
+        }
+
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        if len(title) < 5:
+            raise forms.ValidationError("The title must be at least 5 characters long.")
+        return title
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -11,3 +27,4 @@ class CommentForm(forms.ModelForm):
         if not content or len(content.strip()) == 0:
             raise forms.ValidationError("Comment cannot be empty.")
         return content
+
