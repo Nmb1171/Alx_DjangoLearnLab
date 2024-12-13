@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>All Posts</h1>
+
+<ul>
+    {% for post in posts %}
+    <li>
+        <a href="{% url 'post-detail' post.pk %}">{{post.title}}</a>
+        <p>By {{ post.author }} on {{ post.published_date }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
