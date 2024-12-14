@@ -3,12 +3,12 @@ from .models import Post, Comment
 from taggit.forms import TagWidget
 
 
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['title', 'content', 'tags']  # Include fields from Post model
-        widgets = { 'tags': TagWidget(), # Use TagWidget to allow easy tag input }
-        }
+class PostForm(forms.ModelForm): 
+    class Meta: model = Post 
+    fields = ['title', 'content', 'tags']
+    widgets = { 
+            'tags': TagWidget(),
+            } 
 
 
     def clean_title(self):
