@@ -7,9 +7,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'tags']  # Include fields from Post model
-        widgets = {
-            'tags': TagWidget(),  # Use TagWidget to allow easy tag input
-        }
+         # Use TagWidget to allow easy tag input
+        
 
     def clean_title(self):
         title = self.cleaned_data.get('title')
