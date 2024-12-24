@@ -1,6 +1,7 @@
 from rest_framework.routers import DefaultRouter
 from .views import PostViewSet, CommentViewSet, FeedView, LikeView, UnlikeView
 from django.urls import path
+# <int:pk>/like/", "<int:pk>/unlike/
 
 router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='post')
