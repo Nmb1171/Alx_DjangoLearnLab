@@ -8,6 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from .models import CustomUser
 
+# generics.GenericAPIView", "permissions.IsAuthenticated", "CustomUser.objects.all()
+
 # Create your views here.
 
 
