@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 # viewsets.ModelViewSet
 # Post.objects.filter(author__in=following_users).order_by", "permissions.IsAuthenticated
+# generics.get_object_or_404(Post, pk=pk)", "Notification.objects.create
 # Create your views here.
 
 
